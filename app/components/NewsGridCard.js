@@ -11,10 +11,11 @@ export default async function NewsGrid() {
     return (
       <div
         key={index}
-        className=" w-88 mt-8 max-h-full overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
+        style={{ height: "480px" }}
+        className=" w-88 mt-8 overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
       >
         <Image
-          style={{ width: "39rem", height: "16rem" }}
+          style={{ width: "100%", height: "100%", overflow: "hidden" }}
           src={article.urlToImage || "/image.png"}
           width={1000}
           height={1000}
@@ -28,7 +29,6 @@ export default async function NewsGrid() {
           <h3>{article.description}</h3>
         </div>
         <a href={article.url} target="_blank" rel="noopener noreferrer">
-          
           <button className="p-2 bg-blue-700 m-4 w-80 rounded-2xl text-amber-50 h-12">
             Read More
           </button>
