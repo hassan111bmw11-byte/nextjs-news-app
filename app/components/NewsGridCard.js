@@ -12,7 +12,7 @@ export default async function NewsGrid() {
       <div
         key={index}
         style={{ height: "480px" }}
-        className=" w-88 mt-8 overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
+        className=" w-88 mt-8  overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
       >
         <Image
           style={{ width: "100%", height: "100%", overflow: "hidden" }}
