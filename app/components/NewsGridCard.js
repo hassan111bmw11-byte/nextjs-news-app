@@ -38,7 +38,7 @@ export default async function NewsGrid() {
   });
 
   return (
-    <div className="grid mt-12 p-2 md:grid-cols-3 lg-grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 justify-center items-center gap-4 ml-20  ">
+    <div className="grid mt-12 p-2 md:grid-cols-3 lg-grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 justify-center items-center gap-4   ">
       {myTitlesList}
     </div>
   );
