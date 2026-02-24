@@ -12,7 +12,7 @@ export default async function NewsGrid() {
       <div
         key={index}
         style={{ height: "480px" }}
-        className=" w-88 mt-8  overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
+        className=" w-88 mt-8 hover:bg-zinc-300  overflow-hidden flex rounded-2xl bg-amber-50 flex-col justify-center items-center shadow-2xl "
       >
         <Image
           style={{ width: "100%", height: "100%", overflow: "hidden" }}
@@ -29,7 +29,7 @@ export default async function NewsGrid() {
           <h3>{article.description}</h3>
         </div>
         <a href={article.url} target="_blank" rel="noopener noreferrer">
-          <button className="p-2 bg-blue-700 m-4 w-80 rounded-2xl text-amber-50 h-12">
+          <button className="p-2 hover:bg-blue-800 bg-blue-700 m-4 w-80 rounded-2xl text-amber-50 h-12">
             Read More
           </button>
         </a>

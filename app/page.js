@@ -4,10 +4,13 @@ import NewsGrid from "./components/NewsGridCard";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-blue-500 font-sans ">
+    <div className="flex flex-col justify-center bg-blue-500 ">  
+    <div className="flex flex-col items-center min-h-screen justify-center font-sans ">
       <NewsGrid />
-      <Api />
-      <CopyRight />
+  
     </div>
+        <Api />
+      <CopyRight />
+      </div>
   );
 }
