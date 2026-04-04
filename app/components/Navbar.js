@@ -52,7 +52,7 @@ export default function Navbar({ activeCategores, setActiveCategores,onSearch
         />
 
         <button 
-        onClick={handelSearch}
+        onClick={handelSearch} 
         className=" hover:bg-blue-600 hover:text-white transition duration-300 w-20 h-8 shadow-2xl bg-gray-200 rounded-2xl">
           Search
         </button>

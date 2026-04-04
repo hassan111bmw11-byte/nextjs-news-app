@@ -29,19 +29,37 @@ export default function Home() {
   }, [activeCategory]);
 
   // تحديث دالة البحث لتشمل حالة التحميل أيضاً
-  async function handelSearch(query) {
-    setIsLoading(true); // ابدأ التحميل عند البحث
+async function handelSearch(query) {
+  setIsLoading(true); // ابدأ التحميل
+
+  // 1. إذا كان البحث فارغاً، عد للفئة النشطة حالياً
+  if (!query.trim()) {
     try {
-      const res = await fetch(categories.searchNews(query), { cache: "no-store" });
-      const data = await res.json();
+      const response = await fetch(categories[activeCategory || "all"], { cache: "no-store" });
+      const data = await response.json();
       setArticles(data.articles || []);
-      setActiveCategory(null);
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
+      setActiveCategory("all");
     }
+    return; // اخرج من الدالة هنا
   }
+
+  // 2. إذا كان هناك نص للبحث، نفذ البحث
+  try {
+    const res = await fetch(categories.searchNews(query), { cache: "no-store" });
+    const data = await res.json();
+    setArticles(data.articles || []);
+    setActiveCategory(null); // إلغاء تحديد الفئات لأننا في وضع البحث
+  } catch (error) {
+    console.error("Search failed:", error);
+  } finally {
+    setIsLoading(false);
+  }
+}
+
 
   return (
     <div>
@@ -57,7 +75,12 @@ export default function Home() {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
               <p className="text-white text-xl animate-pulse">Loading News</p>
             </div>
-          ) : (
+          ) : articles.length === 0 ? (
+              // 2. حالة عدم وجود نتائج (بعد انتهاء التحميل)
+              <p className="text-center text-white text-xl bg-black/20 p-4 rounded-xl">
+                No News Found
+              </p>
+            ) : (
             /* عرض الشبكة فقط عندما لا يكون هناك تحميل */
             <div className="grid mt-12 p-2 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 justify-center items-center gap-4">
               {articles.map((article, index) => (
