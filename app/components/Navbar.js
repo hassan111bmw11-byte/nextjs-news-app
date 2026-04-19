@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import StarIcon from "@mui/icons-material/Star";
+import { useEffect, useState } from "react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 export default function Navbar({ activeCategores, setActiveCategores,onSearch
@@ -8,11 +8,17 @@ export default function Navbar({ activeCategores, setActiveCategores,onSearch
   const categories = ["all", "tech", "business", "tesla", "apple"];
   const [ search, setSearch ] = useState("");
 
+    useEffect(() => {
+    const delay = setTimeout(() => {
+      onSearch(search);
+    }, 500);
+
+    return () => clearTimeout(delay);
+  }, [search]);
 
   function handelSearch(){
     if (search.trim())
       return onSearch(search)
-     onSearch(search);
   }
 
   return (
@@ -47,18 +53,12 @@ export default function Navbar({ activeCategores, setActiveCategores,onSearch
           onKeyDown={(e) =>{ if(e.key === "Enter")
             handelSearch()
           }}
+          // onKeyUp={(e) =>{handelSearch()}}
           placeholder="Search"
           className="border placeholder-blue-500 shadow-2xl px-3 border-blue-500 rounded-2xl h-8 w-80"
         />
-
-        <button 
-        onClick={handelSearch} 
-        className=" hover:bg-blue-600 hover:text-white transition duration-300 w-20 h-8 shadow-2xl bg-gray-200 rounded-2xl">
-          Search
-        </button>
-
         <div className="hover:bg-zinc-500/40 flex justify-center transition duration-200 items-center rounded-2xl w-8">
-          <StarIcon color="primary" />
+          <FavoriteIcon color="primary" />
         </div>
       </div>
     </div>

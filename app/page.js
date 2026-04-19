@@ -1,7 +1,8 @@
 "use client";
 import Api from "./components/api";
 import CopyRight from "./components/copyRight";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState, useEffect } from "react";
 import { categories } from './components/newsApi';
 import Navbar from "./components/Navbar";
@@ -10,6 +11,14 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
+  
+
+
+
+    
+
+  
 
   useEffect(() => {
     const getAricles = async () => {
@@ -59,6 +68,10 @@ async function handelSearch(query) {
     setIsLoading(false);
   }
 }
+const toggleFavorite = () => {
+  setIsFavorite(prevState => prevState === "true" ? "false" : "true");
+};
+
 
 
   return (
@@ -112,9 +125,10 @@ async function handelSearch(query) {
                         Read More
                       </button>
                     </a>
-                    <button className="hover:bg-blue-800 bg-blue-700 w-15 rounded-2xl text-amber-50 h-12">
-                      <StarBorderIcon />
-                    </button>
+                    <button
+                    onClick={toggleFavorite}
+                     className="hover:bg-blue-800 bg-blue-700 w-15 rounded-2xl text-amber-50 h-12">
+                        {isFavorite === "true" ? <FavoriteIcon /> : <FavoriteBorderIcon />}</button>
                   </div>
                 </div>
               ))}
